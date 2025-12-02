@@ -14,6 +14,10 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    @isset($app_asset)
+        {{ $app_asset }}
+    @endisset
 </head>
 
 <body class="font-sans antialiased">
@@ -29,11 +33,16 @@
             </header>
         @endisset
 
+
+
         <!-- Page Content -->
         <main>
             {{ $slot }}
         </main>
     </div>
+    @isset($page_script)
+        {{$page_script}}
+    @endisset
 </body>
 
 </html>
