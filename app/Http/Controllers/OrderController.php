@@ -24,6 +24,13 @@ class OrderController extends Controller
             \Midtrans\Config::$isProduction = config('midtrans.is_production');
             \Midtrans\Config::$is3ds = config('midtrans.is_3ds');
 
+            putenv('CURL_SSL_NO_VERIFY=1');
+            \Midtrans\Config::$curlOptions = [
+                CURLOPT_SSL_VERIFYPEER => false,
+                CURLOPT_SSL_VERIFYHOST => false,
+                CURLOPT_HTTPHEADER => [],
+            ];
+
             try {
                 $snapToken = \Midtrans\Snap::getSnapToken([
                     'transaction_details' => [
